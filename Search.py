@@ -58,6 +58,48 @@ def Linear_Search(alist, key):
             return i
     return -1
 
+################################################ BINARY ################################################
+
+def binarySearch():
+
+    os.system('cls')
+    print(Fore.YELLOW + "Binary Search\n\n")
+    print(Style.RESET_ALL)
+
+    array = input("Enter the list : ")
+    array = array.split()
+    array = [int(x) for x in array]
+
+    print(Fore.CYAN)
+    key = int(input("Enter the key : "))
+
+    index = Binary_Search(array, key)
+
+    if index < 0:
+        print(Fore.RED + "{} was not found.".format(key))
+        print(Style.RESET_ALL)
+    else:
+        print(Fore.GREEN + "{} was faound at index {}.".format(key, index))
+        print(Style.RESET_ALL)
+
+def Binary_Search(alist, key):
+
+    start = 0
+    end = len(alist)
+
+    while start < end:
+        mid = (start + end) // 2
+
+        if alist[mid] > key:
+            end = mid
+
+        elif alist[mid] < key:
+            start = mid + 1
+
+        else:
+            return mid
+    return -1
+    
 ################################################ BODY ################################################
 
 os.system('cls')
