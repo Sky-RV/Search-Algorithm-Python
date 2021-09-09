@@ -99,6 +99,47 @@ def Binary_Search(alist, key):
         else:
             return mid
     return -1
+
+################################################ Binary Search Recursion ################################################
+
+def binarySearchRecursion ():
+    os.system('cls')
+    print(Fore.YELLOW + "Binary Search Recursion\n\n")
+    print(Style.RESET_ALL)
+
+    array = input("Enter the list : ")
+    array = array.split()
+    array = [int(x) for x in array]
+
+    print(Fore.CYAN)
+    key = int(input("Enter the key : "))
+
+    index = Binary_Search_Recursion(array, 0, len(array)-1, key)
+
+    if index != -1:
+        print(Fore.GREEN + "{} was faound at index {}.".format(key, index))
+        print(Style.RESET_ALL)
+    else:
+        print(Fore.RED + "{} was not found.".format(key))
+        print(Style.RESET_ALL)
+
+def Binary_Search_Recursion (alist, low, high, key):
+
+    if high >= low:
+
+        mid = (high + low) // 2
+
+        if alist[mid] == key:
+            return mid
+
+        elif alist[mid] > key:
+            Binary_Search_Recursion(alist, low, mid-1, key)
+
+        else:
+            return Binary_Search_Recursion(alist, mid+1, high, key)
+
+    else:
+        return -1
     
 ################################################ BODY ################################################
 
