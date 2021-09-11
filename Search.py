@@ -3,6 +3,77 @@ import os
 from pyfiglet import Figlet
 from colorama import Fore, Back, Style
 
+################################################ CLASS ################################################
+
+class BinarySearchTree_Node:
+
+    def __init__(self, val = None):
+        self.left = None
+        self.right = None
+        self.val = val
+
+    def Insert(self, val):
+        if not self.val:
+            self.val = val
+            return
+        if self.val == val:
+            return
+        if val < self.val:
+            if self.left:
+                self.left.Insert(val)
+                return
+            self.left = BinarySearchTree_Node(val)
+            return
+        if self.right:
+            self.right.Insert(val)
+            return
+        self.right = BinarySearchTree_Node(val)
+
+    def get_Min(self):
+        current = self
+        while current.left is not None:
+            current = current.left
+        return current.val
+
+    def grt_Max(self):
+        current = self
+        while current.right is not None:
+            current = current.right
+        return current.val
+
+    def Delete(self, val):
+        if self == None:
+            return self
+        if val < self.val:
+            if self.left:
+                self.left = self.left.Delete(val)
+            return self
+        if val > self.val:
+            if self.right:
+                self.right = self.right.Delete(val)
+            return self
+        if self.rigt == None:
+            return self.left
+        if self.left == None:
+            return self.right
+        min_larger_node = self.right
+        while min_larger_node.left:
+            min_larger_node = min_larger_node.left
+        self.val = min_larger_node.val
+        self.right = self.right.Delete(min_larger_node.val)
+        return self
+
+    def Exists(self, val):
+        if val == self.val:
+            return True
+        if val < self.val:
+            if self.left == None:
+                return False
+            return self.left.Exists(val)
+        if self.right == None:
+            return False
+        return self.right.Exists(val)
+
 ################################################ MAIN ################################################
 
 def main():
@@ -140,7 +211,7 @@ def Binary_Search_Recursion (alist, low, high, key):
 
     else:
         return -1
-    
+
 ################################################ BODY ################################################
 
 os.system('cls')
