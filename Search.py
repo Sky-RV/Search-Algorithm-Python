@@ -7,99 +7,44 @@ from colorama import Fore, Back, Style
 
 class BinarySearchTree_Node:
 
-    def __init__(self, val = None):
+    def __init__(self, data):
         self.left = None
         self.right = None
-        self.val = val
+        self.data = data
 
-    def Insert(self, val):
-        if not self.val:
-            self.val = val
-            return
-        if self.val == val:
-            return
-        if val < self.val:
-            if self.left:
-                self.left.Insert(val)
-                return
-            self.left = BinarySearchTree_Node(val)
-            return
+    def Insert(self, data):
+        if self.data:
+         if data < self.data:
+            if self.left is None:
+               self.left = Node(data)
+            else:
+               self.left.insert(data)
+            else data > self.data:
+               if self.right is None:
+                  self.right = Node(data)
+               else:
+                  self.right.insert(data)
+         else:
+            self.data = data
+
+    def searchTree(self, lkpval):
+        if lkpval < self.data:
+         if self.left is None:
+            return str(lkpval)+" Not Found"
+         return self.left.findval(lkpval)
+       else if lkpval > self.data:
+            if self.right is None:
+               return str(lkpval) + Fore.RED + " Not Found"
+            return self.right.findval(lkpval)
+        else:
+            print(str(self.data) + Fore.GREEN + ' is found')
+
+    def Print_Tree(self):
+        if self.left:
+            self.left.PrintTree()
+        print( self.data),
         if self.right:
-            self.right.Insert(val)
-            return
-        self.right = BinarySearchTree_Node(val)
-
-    def get_Min(self):
-        current = self
-        while current.left is not None:
-            current = current.left
-        return current.val
-
-    def grt_Max(self):
-        current = self
-        while current.right is not None:
-            current = current.right
-        return current.val
-
-    def Delete(self, val):
-        if self == None:
-            return self
-        if val < self.val:
-            if self.left:
-                self.left = self.left.Delete(val)
-            return self
-        if val > self.val:
-            if self.right:
-                self.right = self.right.Delete(val)
-            return self
-        if self.rigt == None:
-            return self.left
-        if self.left == None:
-            return self.right
-        min_larger_node = self.right
-        while min_larger_node.left:
-            min_larger_node = min_larger_node.left
-        self.val = min_larger_node.val
-        self.right = self.right.Delete(min_larger_node.val)
-        return self
-
-    def Exists(self, val):
-        if val == self.val:
-            return True
-        if val < self.val:
-            if self.left == None:
-                return False
-            return self.left.Exists(val)
-        if self.right == None:
-            return False
-        return self.right.Exists(val)
-
-    def Preorder(self, vals):
-        if self.val is not None:
-            vals.append(self, val)
-        if self.left is not None:
-            self.left.Preorder(vals)
-        if self.right is not None:
-            self.right.Preorder(vals)
-        return vals
-
-    def Inorder(self, vals):
-        if self.left is not None:
-            self.left.inorder(vals)
-        if self.val is not None:
-            vals.append(self.val)
-        if self.right is not None:
-            self.right.inorder(vals)
-        return vals
-
-    def Postorder(self, vals):
-        if self.left is not None:
-            self.left.postorder(vals)
-        if self.right is not None:
-            self.right.postorder(vals)
-        if self.val is not None:
-            vals.append(self.val)
-        return vals
+            self.right.PrintTree()
 
 ################################################ MAIN ################################################
 
@@ -198,7 +143,7 @@ def Binary_Search(alist, key):
             return mid
     return -1
 
-################################################ Binary Search Recursion ################################################
+################################################ BINARY SEARCH RECURSIVE ################################################
 
 def binarySearchRecursion ():
     os.system('cls')
@@ -238,6 +183,22 @@ def Binary_Search_Recursion (alist, low, high, key):
 
     else:
         return -1
+
+################################################ BINARY SEARCH TREE ################################################
+
+def BinarySearchTree():
+    os.system('cls')
+    print(Fore.YELLOW + "Binary Search Tree\n\n")
+    print(Style.RESET_ALL)
+
+    array = input("Enter the list : ")
+    array = array.split()
+    array = [int(x) for x in array]
+
+    print(Fore.CYAN)
+    key = int(input("Enter the key : "))
+
+    searchTree(key)
 
 ################################################ BODY ################################################
 
