@@ -72,29 +72,32 @@ def binarySearch():
 
     index = Binary_Search(array, key)
 
-    if index < 0:
-        print(Fore.RED + "{} was not found.".format(key))
+    if index != -1:
+        print(Fore.GREEN + "{} was faound at index {}.".format(key, index))
         print(Style.RESET_ALL)
     else:
-        print(Fore.GREEN + "{} was faound at index {}.".format(key, index))
+        print(Fore.RED + "{} was not found.".format(key))
         print(Style.RESET_ALL)
 
 def Binary_Search(alist, key):
 
-    start = 0
-    end = len(alist)
+    low = 0
+    high = len(alist) - 1
+    mid = 0
 
-    while start < end:
-        mid = (start + end) // 2
+    while low<= high:
 
-        if alist[mid] > key:
-            end = mid
+        mid = (low + high) // 2
 
-        elif alist[mid] < key:
-            start = mid + 1
+        if alist[mid] < key:
+            low = mid + 1
+
+        elif alist[mid] > key:
+            high = mid - 1
 
         else:
             return mid
+
     return -1
 
 ################################################ BINARY SEARCH RECURSIVE ################################################
