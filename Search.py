@@ -3,49 +3,6 @@ import os
 from pyfiglet import Figlet
 from colorama import Fore, Back, Style
 
-################################################ CLASS ################################################
-
-class BinarySearchTree_Node:
-
-    def __init__(self, data):
-        self.left = None
-        self.right = None
-        self.data = data
-
-    def Insert(self, data):
-        if self.data:
-         if data < self.data:
-            if self.left is None:
-               self.left = Node(data)
-            else:
-               self.left.insert(data)
-            else data > self.data:
-               if self.right is None:
-                  self.right = Node(data)
-               else:
-                  self.right.insert(data)
-         else:
-            self.data = data
-
-    def searchTree(self, lkpval):
-        if lkpval < self.data:
-         if self.left is None:
-            return str(lkpval)+" Not Found"
-         return self.left.findval(lkpval)
-       else if lkpval > self.data:
-            if self.right is None:
-               return str(lkpval) + Fore.RED + " Not Found"
-            return self.right.findval(lkpval)
-        else:
-            print(str(self.data) + Fore.GREEN + ' is found')
-
-    def Print_Tree(self):
-        if self.left:
-            self.left.PrintTree()
-        print( self.data),
-        if self.right:
-            self.right.PrintTree()
-
 ################################################ MAIN ################################################
 
 def main():
@@ -62,9 +19,6 @@ def main():
 
     elif option == "3":
         binarySearchRecursion()
-
-    elif option == "4":
-        binarySearchTree()
 
     else:
       print(Fore.RED + "Error! \nPlease choose a valin number.")
@@ -184,22 +138,6 @@ def Binary_Search_Recursion (alist, low, high, key):
     else:
         return -1
 
-################################################ BINARY SEARCH TREE ################################################
-
-def BinarySearchTree():
-    os.system('cls')
-    print(Fore.YELLOW + "Binary Search Tree\n\n")
-    print(Style.RESET_ALL)
-
-    array = input("Enter the list : ")
-    array = array.split()
-    array = [int(x) for x in array]
-
-    print(Fore.CYAN)
-    key = int(input("Enter the key : "))
-
-    searchTree(key)
-
 ################################################ BODY ################################################
 
 os.system('cls')
@@ -212,7 +150,7 @@ print(Style.RESET_ALL)
 
 print("Lists of searchs : ")
 
-searchsArray = ["Linear Search", "Binary Search", "Binary Search Recursion", "Binary Search Tree"]
+searchsArray = ["Linear Search", "Binary Search", "Binary Search Recursion"]
 listNumbers = "[{}] : "
 
 for i in range(len(searchsArray)):
