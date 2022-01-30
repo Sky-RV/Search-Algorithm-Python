@@ -116,7 +116,7 @@ def binarySearchRecursion ():
 
     index = Binary_Search_Recursion(array, 0, len(array)-1, key)
 
-    if index != -1:
+    if index != -1 :
         print(Fore.GREEN + "{} was faound at index {}.".format(key, index))
         print(Style.RESET_ALL)
     else:
